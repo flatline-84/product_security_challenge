@@ -4,6 +4,7 @@ from flask import redirect, url_for, request, render_template, flash
 # Custom Imports
 from config import Config #contains configuration for webapp
 from app.auth import auth
+from app.security import SecurityHardening
 
 
 # Create our main application here
@@ -21,7 +22,12 @@ def index():
 if __name__ == "__main__":
     # Setup up application
     app.secret_key = config.secret_key
+
     # Register routes via blueprints
     app.register_blueprint(auth)
+
+    # Register the security middleware that provides hardening
+    app.wsgi_app = SecurityHardening(app.wsgi_app)
+
     # Begin running the webapp
     app.run(config.hostname, config.port, config.debug)
