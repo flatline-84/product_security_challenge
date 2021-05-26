@@ -27,6 +27,7 @@ This was built using Python 3.8.5.
     * :o: session tokens (check session fixation)
     * :o: will cookies be secure (generate SSL?)
     * :o: require 2FA
+    * :o: remember me
 * :o: log out
     * :o: invalidate session correctly
     * :o: 302 redirect

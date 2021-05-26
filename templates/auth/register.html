@@ -1,0 +1,13 @@
+{% extends 'application.html' %}
+
+{% block title%}Register{% endblock %}
+{% block header%}Register{% endblock %}
+
+{% block content %}
+<h1>Register</h1>
+<form method="POST" action="register">
+    <input type="text" name="username" placeholder="example@zenchair.com">
+    <input type="password" name="password">
+    <input type="submit" value="Register">
+</form>
+{% endblock %}
