@@ -1,10 +1,52 @@
 # The Zendesk Product Security Challenge
 
-Hello friend,
+## Description
+The good ol' one-two combo of Python + Flask.
+<hr>
 
-We are super excited that you want to be part of the Product Security team at Zendesk. **To get started, you need to fork this repository to your own GitHub profile and work off that copy.** 
+## Setup
 
-### The Challenge
+This was built using Python 3.8.5.
+
+1. Ensure Python 3.8 is installed or higher with `python3 -V`
+2. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
+3. Run the program with `python3 app.py`
+
+## Implementation
+
+### Main Features
+* :heavy_check_mark: todo list
+* :o: virtual env
+* :o: create user page  
+    * :o: id, username, email, password, 2fa token
+    * :o: user id, index on email
+    * :o: show 2FA here
+* :o: login page
+    * :o: don't return email or password wrong message
+    * :o: CSRF ?
+    * :o: session tokens (check session fixation)
+    * :o: will cookies be secure (generate SSL?)
+    * :o: require 2FA
+* :o: log out
+    * :o: invalidate session correctly
+    * :o: 302 redirect
+* :o: reset password
+    * :o: Send email? Pretty hard to do
+    * :o: Security questions are bad practice
+* :o: header hardening
+    * :o: CORS
+    * :o: CSP
+    * :o: Pragma, Cache, etc
+* :o: CI/CD pipeline to build Docker image?
+    * :o: or to lint and verify no security issues
+
+
+### Nice To Have  
+*  captcha / bruteforce protection
+* gunicorn
+<hr>
+
+## The Challenge
 
 Implement an easy, secure authentication mechanism that allows users to:
 - Create an account
