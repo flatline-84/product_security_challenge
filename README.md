@@ -6,44 +6,46 @@ The good ol' one-two combo of Python + Flask.
 
 ## Setup
 
-This was built using Python 3.8.5.
+This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respectively.
 
-1. Ensure Python 3.8 is installed or higher with `python3 -V`
-2. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
-3. Run the program with `python3 main.py`
-4. Navigate to `http://localhost:8080/` in your browser.
+1. Ensure Python 3.6 is installed or higher with `python3 -V`
+2. Create a virtualenv to keep your host system clean from pip packages - `python3 -m venv .venv`
+3. Activate the virtual env with `source .venv/bin/activate`
+4. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
+5. Run the program with `python3 main.py`
+6. Navigate to `http://localhost:8080/` in your browser.
 
 ## Implementation
 
 ### Main Features
-* :heavy_check_mark: todo list
-* :heavy_check_mark: virtual env
-* :o: create user page  
-    * :heavy_check_mark: id, username, email, password
-    * :heavy_check_mark: user id, index on email
-    * :o: 2FA
-    * :o: show 2FA here
-    * :heavy_check_mark: password validations
-    * :o: password complexity
-* :o: login page
-    * :heavy_check_mark: don't return email or password wrong message
-    * :o: CSRF ?
-    * :heavy_check_mark: session tokens (check session fixation)
+* :white_check_mark: todo list
+* :white_check_mark: virtual env
+* :white_square_button: create user page  
+    * :white_check_mark: id, username, email, password
+    * :white_check_mark: user id, index on email
+    * :white_square_button: 2FA
+    * :white_square_button: show 2FA here
+    * :white_check_mark: password validations
+    * :white_square_button: password complexity
+* :white_square_button: login page
+    * :white_check_mark: don't return email or password wrong message
+    * :white_square_button: CSRF ?
+    * :white_check_mark: session tokens (check session fixation)
     * :negative_squared_cross_mark: will cookies be secure (generate SSL?)
-    * :o: require 2FA
-    * :o: remember me
-* :heavy_check_mark: log out
-    * :heavy_check_mark: invalidate session correctly
-    * :o: 302 redirect
-* :o: reset password
-    * :o: Send email? Pretty hard to do
-    * :o: Security questions are bad practice
-* :o: header hardening
-    * :o: CORS
-    * :o: CSP
-    * :o: Pragma, Cache, etc
-* :o: CI/CD pipeline to build Docker image?
-    * :o: or to lint and verify no security issues
+    * :white_square_button: require 2FA
+    * :white_square_button: remember me
+* :white_check_mark: log out
+    * :white_check_mark: invalidate session correctly
+    * :white_square_button: 302 redirect
+* :white_square_button: reset password
+    * :white_square_button: Send email? Pretty hard to do
+    * :white_square_button: Security questions are bad practice
+* :white_square_button: header hardening
+    * :white_square_button: CORS
+    * :white_square_button: CSP
+    * :white_square_button: Pragma, Cache, etc
+* :white_square_button: CI/CD pipeline to build Docker image?
+    * :white_square_button: or to lint and verify no security issues
 
 
 ### Nice To Have  
