@@ -2,7 +2,7 @@ from flask import Blueprint, request, render_template, flash, redirect, url_for,
 from databases.database import db
 from databases.user_model import User, get_valid_user
 
-from app.forms import RegistrationForm, Register2FAForm, LoginForm
+from app.forms import RegistrationForm, Register2FAForm, LoginForm, ResetPasswordForm
 
 auth_blueprint = Blueprint('auth_blueprint', __name__)
 
@@ -12,7 +12,7 @@ def login():
     if request.method == 'POST' and form.validate():
         user = get_valid_user(form.email.data, form.password.data, form.otp.data)
         if not user:
-            flash("Email or password is incorrect. Please try again")
+            flash("Email, password, or OTP is incorrect. Please try again")
             return redirect(url_for('auth_blueprint.login'))
         else:
             flash("Logged in successfully!")
@@ -39,8 +39,11 @@ def register():
                 db.session.commit()
                 # Update our session and log our user in
                 login_user(user, request)
+
+                # Only set TOTP on initial registration
                 session['2fa'] = user.get_totp_uri()
                 session.modified = True
+
                 flash("Your initial registration is complete!")
             except Exception as error:
                 db.session.rollback()
@@ -69,7 +72,26 @@ def logout():
 
 @auth_blueprint.route('/change-password', methods=['GET', 'POST'])
 def change_password():
-    pass
+    form = ResetPasswordForm(request.form)
+    # form.validate() returns true if all validation checks on data pass
+    if request.method == 'POST' and form.validate():
+        user = get_valid_user(form.email.data, form.password.data, form.otp.data)
+        if user:
+            user.password = user.gen_hashed_password(form.new_password.data)
+            try:
+                db.session.add(user)
+                db.session.commit()
+                # Update our session and log our user in
+                login_user(user, request)
+                flash("Your password has been changed!")
+            except Exception as error:
+                db.session.rollback()
+                flash("Error occured. Password could not be changed!")
+        else:
+            flash("Details are wrong. No password changed.")
+        return redirect(url_for('main_blueprint.index'))
+
+    return render_template('auth/change_password.html', form=form)
 
 def login_user(user, request):
     session['logged_in'] = True

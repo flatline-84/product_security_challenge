@@ -21,7 +21,7 @@ class User(db.Model):
 
     def __init__(self, username, password, email):
         self.username = username
-        self.password = generate_password_hash(password + config.salt)
+        self.password = self.gen_hashed_password(password)
         self.email = email
         self.date_created = datetime.utcnow()
 
@@ -33,6 +33,9 @@ class User(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+    def gen_hashed_password(self, password):
+        return generate_password_hash(password + config.salt)
 
     def verify_password(self, password):
         return check_password_hash(self.password, password+config.salt)

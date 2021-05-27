@@ -25,7 +25,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_check_mark: user id, index on email
     * :white_check_mark: 2FA
     * :white_check_mark: show 2FA here
-    * :white_check_mark: password validations
+    * :white_check_mark: email, password validations
     * :white_square_button: password complexity
     * :white_square_button: placeholder text with new forms
 * :white_square_button: login page
@@ -33,11 +33,11 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_check_mark: session tokens (check session fixation)
     * :negative_squared_cross_mark: will cookies be secure (generate SSL?)
     * :white_check_mark: require 2FA
-    * :white_square_button: remember me
+    * :negative_squared_cross_mark: remember me
 * :white_check_mark: log out
     * :white_check_mark: invalidate session correctly
-* :white_square_button: reset password
-    * :white_square_button: require email, old password, and OTP
+* :white_check_mark: reset password
+    * :white_check_mark: require email, old password, and OTP
 * :white_square_button: app hardening
     * :white_square_button: CORS (won't implement)
     * :white_square_button: CSP
@@ -52,6 +52,11 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 *  captcha / bruteforce protection
 * gunicorn
 * IP filtering / geoblocking
+<hr>
+
+### Issues 
+* email enumeration when registering. Not sure the correct thing to do here
+
 <hr>
 
 ## The Challenge
