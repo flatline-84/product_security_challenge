@@ -5,4 +5,16 @@
 
 {% block content %}
 <p>This is your home page</p>
+<br>
+<table>
+    <tr>
+        <th>Last Login:</th>
+        <th>IP Address:</th>
+    </tr>
+    <tr>
+        <td>{{ session['last_login'] }}</td>
+        <td>{{ session['last_ip_login'] }}</td>
+    </tr>
+</table>
+
 {% endblock %}

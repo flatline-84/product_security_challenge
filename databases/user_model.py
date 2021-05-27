@@ -20,13 +20,25 @@ class User(db.Model):
         self.username = username
         self.password = generate_password_hash(password + config.salt)
         self.email = email
-        self.date_created = datetime.now()
+        self.date_created = datetime.utcnow()
     
     def __repr__(self):
         return f'<User {self.username}>'
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
     def verify_password(self, password):
         return check_password_hash(self.password, password+config.salt)
+    
+    def update_last_login(self):
+        self.last_login = datetime.utcnow()
+        self.save()
+    
+    def update_ip_address(self, ip_addr):
+        self.last_ip_login = ip_addr
+        self.save()
     
 def get_valid_user(email, password):
     user = User.query.filter_by(email=email).first()

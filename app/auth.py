@@ -17,7 +17,7 @@ def login():
             return redirect(url_for('auth_blueprint.login'))
         else:
             flash("Logged in successfully!")
-            login_user(user)
+            login_user(user, request)
         return redirect(url_for('main_blueprint.index'))
 
     return render_template('auth/login.html', form=form)
@@ -38,7 +38,7 @@ def register():
             db.session.commit()
 
             # Update our session and log our user in
-            login_user(user)
+            login_user(user, request)
             flash("Your registration is complete!")
 
         else:
@@ -58,12 +58,23 @@ def logout():
 def change_password():
     pass
 
-def login_user(user):
+def login_user(user, request):
     session['logged_in'] = True
     session['username'] = user.username
+    session['last_login'] = user.last_login
+    session['last_ip_login'] = user.last_ip_login
     session.modified = True
 
+    user.update_last_login()
+    user.update_ip_address(request.remote_addr)
+
 def logout_user():
+    # Set our logged in session to false
     session['logged_in'] = False
+
+    # Remove all user specific session variables
     session.pop('username', None)
+    session.pop('last_login', None)
+    session.pop('last_ip_login', None)
+
     session.modified = True
