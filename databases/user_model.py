@@ -2,6 +2,7 @@ from .database import db
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import pyotp
 
 config = Config()
 
@@ -16,11 +17,15 @@ class User(db.Model):
     last_login = db.Column(db.DateTime)
     last_ip_login = db.Column(db.String(30))
 
+    totp_secret = db.Column(db.String(30), nullable=False)
+
     def __init__(self, username, password, email):
         self.username = username
         self.password = generate_password_hash(password + config.salt)
         self.email = email
         self.date_created = datetime.utcnow()
+
+        self.totp_secret = pyotp.random_base32()
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -31,7 +36,10 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password, password+config.salt)
-    
+
+    def verify_totp(self, otp):
+        return pyotp.TOTP(secret).verify(otp)
+
     def update_last_login(self):
         self.last_login = datetime.utcnow()
         self.save()
@@ -40,11 +48,11 @@ class User(db.Model):
         self.last_ip_login = ip_addr
         self.save()
     
-def get_valid_user(email, password):
+def get_valid_user(email, password, otp):
     user = User.query.filter_by(email=email).first()
     if not user:
         return None
-    if user.verify_password(password):
+    if user.verify_password(password) and user.verify_totp(otp):
         return user
     else:
         return None

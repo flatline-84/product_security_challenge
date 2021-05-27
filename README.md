@@ -27,6 +27,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_square_button: show 2FA here
     * :white_check_mark: password validations
     * :white_square_button: password complexity
+    * :white_square_button: placeholder text with new forms
 * :white_square_button: login page
     * :white_check_mark: don't return email or password wrong message
     * :white_square_button: CSRF ?

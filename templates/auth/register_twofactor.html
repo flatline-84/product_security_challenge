@@ -1,0 +1,11 @@
+{% extends 'application.html' %}
+
+{% block title %}2FA
+{% endblock %}
+{% block header %}2FA
+{% endblock %}
+
+{% block content %}
+    <h1>2FA</h1>
+    <p>Your TOTP secret is: {{ session['2fa'] }}</p>
+{% endblock %}
