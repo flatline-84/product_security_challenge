@@ -17,7 +17,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 
 ## Implementation
 
-### Main Features
+### Todo List
 * :white_check_mark: todo list
 * :white_check_mark: virtual env
 * :white_check_mark: create / register user page  
@@ -28,18 +28,18 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_check_mark: email, password validations
     * :white_square_button: password complexity
     * :white_square_button: placeholder text with new forms
-* :white_square_button: login page
+* :white_check_mark: login page
     * :white_check_mark: don't return email or password wrong message
     * :white_check_mark: session tokens (check session fixation)
-    * :negative_squared_cross_mark: will cookies be secure (generate SSL?)
+    * :x: will cookies be secure (generate SSL?)
     * :white_check_mark: require 2FA
-    * :negative_squared_cross_mark: remember me
+    * :x: remember me
 * :white_check_mark: log out
     * :white_check_mark: invalidate session correctly
 * :white_check_mark: reset password
     * :white_check_mark: require email, old password, and OTP
 * :white_square_button: app hardening
-    * :white_square_button: CORS (won't implement)
+    * :x: CORS
     * :white_square_button: CSP
     * :white_square_button: Pragma, Cache, etc
     * :white_check_mark: CSRF on login, logout, register, change password
@@ -47,15 +47,32 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * :white_square_button: CI/CD pipeline to build Docker image
     * :white_square_button: or to lint and verify no security issues
 
-
 ### Nice To Have  
 *  captcha / bruteforce protection
 * gunicorn
 * IP filtering / geoblocking
-<hr>
+* email reset?
 
 ### Issues 
 * email enumeration when registering. Not sure the correct thing to do here
+
+<hr>
+
+## Main Features
+
+1. Accounts
+    * Password SHA256 hashed + salted
+    * OTP required for login and password change
+2. Cookies
+    * HTTPOnly
+    * Signed (but not encrypted)
+3. Sessions
+    * proper invalidation - log out clears all session data
+    * page permissions (no roles)
+4. Input
+    * all input is sanitized coming in and jinja templates encode on the way out
+    * CSRF tokens on all forms
+    * no session fixation 
 
 <hr>
 
