@@ -15,13 +15,21 @@
                 ZenChair
             </h1>
             <ul>
-                <li><a href="{{ url_for('main_blueprint.index') }}">Home</a></li>
-                {% if session['loggin_in'] == True %}
+                <li>
+                    <a href="{{ url_for('main_blueprint.index') }}">Home</a>
+                </li>
+                {% if session['logged_in'] == True: %}
                     <li>
-                        <span>{{ sessio['username'] }}</span>
+                        <span>{{ session['username'] }}</span>
                     </li>
                     <li>
-                        <a href="{{ url_for('auth_blueprint.logout') }}">Log Out</a>
+                        <a href="{{ url_for('auth_blueprint.change_password') }}">Change Password</a>
+                    </li>
+                    <li>
+                        <form action="{{ url_for('auth_blueprint.logout') }}" method="POST">
+                            <button type="submit" name="logout">Logout</button>
+                        </form>
+
                     </li>
                 {% else %}
                     <li>

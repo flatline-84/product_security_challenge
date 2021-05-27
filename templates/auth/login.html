@@ -1,11 +1,20 @@
 {% extends 'application.html' %}
 
-{% block title%}Login{% endblock %}
-{% block header%}Login{% endblock %}
+{% block title %}Login
+{% endblock %}
+{% block header %}Login
+{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
-<p>
-    Please login.
-</p>
+    <h1>Login</h1>
+    {% from "auth/_formhelper.html" import render_field %}
+    <form method="POST">
+        <dl>
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+        </dl>
+        <p>
+            <input type="submit" value="Login"/>
+        </p>
+    </form>
 {% endblock %}

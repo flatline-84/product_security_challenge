@@ -25,5 +25,14 @@ class User(db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
-    def verify_password(self, pwd):
-        return check_password_hash(self.password, pwd+config.salt)
+    def verify_password(self, password):
+        return check_password_hash(self.password, password+config.salt)
+    
+def get_valid_user(email, password):
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return None
+    if user.verify_password(password):
+        return user
+    else:
+        return None

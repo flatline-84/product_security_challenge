@@ -12,8 +12,8 @@ class RegistrationForm(Form):
     password_confirm = PasswordField('Repeat Password')
 
 class LoginForm(Form):
-    email = StringField('Email Address', [validators.Length(min=6, max=35)])
-    password = PasswordField('New Password', [
+    email = StringField('Email Address', [validators.Length(min=6, max=35), validators.Email()])
+    password = PasswordField('Password', [
         validators.DataRequired(),
         validators.Length(min=8, max=35)
     ])
