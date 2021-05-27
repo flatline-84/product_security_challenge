@@ -1,13 +1,22 @@
 {% extends 'application.html' %}
 
-{% block title%}Register{% endblock %}
-{% block header%}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
+{% block header %}Register
+{% endblock %}
 
 {% block content %}
-<h1>Register</h1>
-<form method="POST" action="register">
-    <input type="text" name="username" placeholder="example@zenchair.com">
-    <input type="password" name="password">
-    <input type="submit" value="Register">
-</form>
-{% endblock %}
+    <h1>Register</h1>
+    {% from "auth/_formhelper.html" import render_field %}
+    <form method="POST">
+        <dl>
+            {{ render_field(form.username) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.password_confirm) }}
+        </dl>
+        <p>
+            <input type="submit" value="Register"/></p>
+    </form>
+
+{% endblock %}</p>

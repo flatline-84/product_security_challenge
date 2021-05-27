@@ -16,11 +16,13 @@ This was built using Python 3.8.5.
 
 ### Main Features
 * :heavy_check_mark: todo list
-* :o: virtual env
+* :heavy_check_mark: virtual env
 * :o: create user page  
-    * :o: id, username, email, password, 2fa token
-    * :o: user id, index on email
+    * :heavy_check_mark: id, username, email, password
+    * :heavy_check_mark: user id, index on email
+    * :o: 2FA
     * :o: show 2FA here
+    * :o: password complexity and validations
 * :o: login page
     * :o: don't return email or password wrong message
     * :o: CSRF ?
@@ -45,6 +47,7 @@ This was built using Python 3.8.5.
 ### Nice To Have  
 *  captcha / bruteforce protection
 * gunicorn
+* IP filtering / geoblocking
 <hr>
 
 ## The Challenge
