@@ -15,6 +15,7 @@
             {{ render_field(form.password) }}
             {{ render_field(form.password_confirm) }}
         </dl>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <p>
             <input type="submit" value="Register"/>
         </p>

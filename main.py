@@ -8,6 +8,7 @@
 # Imports
 from flask import Flask
 from flask import redirect, url_for, request, render_template, flash
+from flask_wtf.csrf import CSRFProtect
 # For database and models
 from flask_sqlalchemy import SQLAlchemy
 from databases.database import db
@@ -18,6 +19,7 @@ from app.routes import main_blueprint
 from app.security import SecurityHardening
 
 config = Config()
+csrf = CSRFProtect()
 
 def create_app():
     # Create our main application here
@@ -28,6 +30,8 @@ def create_app():
     app.secret_key = config.secret_key
     # Create the database connection
     db.init_app(app)
+    # initialize CSRF protection from flask-wtf
+    csrf.init_app(app)
 
     # Register routes via blueprints
     app.register_blueprint(main_blueprint)
