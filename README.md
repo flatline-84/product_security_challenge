@@ -10,7 +10,7 @@ This was built using Python 3.8.5.
 
 1. Ensure Python 3.8 is installed or higher with `python3 -V`
 2. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
-3. Run the program with `python3 app.py`
+3. Run the program with `python3 main.py`
 
 ## Implementation
 

@@ -20,14 +20,14 @@
                         <span>{{ g.user['username'] }}</span>
                     </li>
                     <li>
-                        <a href="{{ url_for('auth.logout') }}">Log Out</a>
+                        <a href="{{ url_for('auth_blueprint.logout') }}">Log Out</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{{ url_for('auth.register') }}">Register</a>
+                        <a href="{{ url_for('auth_blueprint.register') }}">Register</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('auth.login') }}">Log In</a>
+                        <a href="{{ url_for('auth_blueprint.login') }}">Log In</a>
                     </li>
                 {% endif %}
             </ul>

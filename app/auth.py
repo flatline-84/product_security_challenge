@@ -1,8 +1,8 @@
 from flask import Blueprint, request, render_template, flash
 
-auth = Blueprint('auth', __name__)
+auth_blueprint = Blueprint('auth_blueprint', __name__)
 
-@auth.route('/login', methods = ['POST', 'GET'])
+@auth_blueprint.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
         # Check user here
@@ -12,7 +12,7 @@ def login():
         flash("flash message")
         return render_template('auth/login.html')
 
-@auth.route('/register', methods = ['POST', 'GET'])
+@auth_blueprint.route('/register', methods = ['POST', 'GET'])
 def register():
     if request.method == 'GET':
         return render_template('auth/register.html')
@@ -23,6 +23,6 @@ def register():
         flash(password) #sEkUriTy
         return render_template('auth/register.html')
 
-@auth.route('/logout', methods = ['POST'])
+@auth_blueprint.route('/logout', methods = ['POST'])
 def logout():
     pass
