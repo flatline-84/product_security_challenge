@@ -6,7 +6,6 @@ from app.forms import RegistrationForm, Register2FAForm, LoginForm
 
 auth_blueprint = Blueprint('auth_blueprint', __name__)
 
-
 @auth_blueprint.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm(request.form)
@@ -40,7 +39,7 @@ def register():
                 db.session.commit()
                 # Update our session and log our user in
                 login_user(user, request)
-                session['2fa'] = user.totp_secret
+                session['2fa'] = user.get_totp_uri()
                 session.modified = True
                 flash("Your initial registration is complete!")
             except Exception as error:

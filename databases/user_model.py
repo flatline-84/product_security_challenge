@@ -38,7 +38,11 @@ class User(db.Model):
         return check_password_hash(self.password, password+config.salt)
 
     def verify_totp(self, otp):
-        return pyotp.TOTP(secret).verify(otp)
+        return pyotp.TOTP(self.totp_secret).verify(otp)
+    
+    def get_totp_uri(self):
+        if self.totp_secret:
+            return pyotp.totp.TOTP(self.totp_secret).provisioning_uri(name=self.email, issuer_name='ZenChair')
 
     def update_last_login(self):
         self.last_login = datetime.utcnow()
