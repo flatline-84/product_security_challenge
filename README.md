@@ -23,16 +23,17 @@ This was built using Python 3.8.5.
     * :heavy_check_mark: user id, index on email
     * :o: 2FA
     * :o: show 2FA here
-    * :o: password complexity and validations
+    * :heavy_check_mark: password validations
+    * :o: password complexity
 * :o: login page
-    * :o: don't return email or password wrong message
+    * :heavy_check_mark: don't return email or password wrong message
     * :o: CSRF ?
-    * :o: session tokens (check session fixation)
-    * :o: will cookies be secure (generate SSL?)
+    * :heavy_check_mark: session tokens (check session fixation)
+    * :negative_squared_cross_mark: will cookies be secure (generate SSL?)
     * :o: require 2FA
     * :o: remember me
-* :o: log out
-    * :o: invalidate session correctly
+* :heavy_check_mark: log out
+    * :heavy_check_mark: invalidate session correctly
     * :o: 302 redirect
 * :o: reset password
     * :o: Send email? Pretty hard to do
