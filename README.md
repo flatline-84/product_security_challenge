@@ -43,12 +43,13 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_square_button: CSP
     * :white_square_button: Pragma, Cache, etc
     * :white_check_mark: CSRF on login, logout, register, change password
-    * :white_check_mark: bruteforce protection?
+    * :white_square_button: bruteforce protection?
+    * :white_check_mark: account lockout
 * :white_square_button: CI/CD pipeline to build Docker image
     * :white_square_button: or to lint and verify no security issues
 
 ### Nice To Have  
-*  captcha / bruteforce protection
+* captcha / bruteforce protection
 * gunicorn
 * IP filtering / geoblocking
 * email reset?
@@ -69,10 +70,11 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 3. Sessions
     * proper invalidation - log out clears all session data
     * page permissions (no roles)
+    * no session fixation 
 4. Input
     * all input is sanitized coming in and jinja templates encode on the way out
     * CSRF tokens on all forms
-    * no session fixation 
+
 
 <hr>
 

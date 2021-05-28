@@ -12,8 +12,10 @@ def login():
     if request.method == 'POST' and form.validate():
         user = get_valid_user(form.email.data, form.password.data, form.otp.data)
         if not user:
+
             flash("Email, password, or OTP is incorrect. Please try again")
-            return redirect(url_for('auth_blueprint.login'))
+
+            return redirect(url_for('auth_blueprint.login', naughty=True))
         else:
             flash("Logged in successfully!")
             login_user(user, request)
