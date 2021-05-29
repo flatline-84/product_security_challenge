@@ -55,9 +55,9 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_square_button: Pragma, Cache, etc
     * :white_check_mark: CSRF on login, logout, register, change password
     * :white_check_mark: bruteforce protection on login / IP lockout
-* :white_square_button: CI/CD pipeline
+* :white_check_mark: CI/CD pipeline
     * :white_check_mark: docker image from dockerfile
-    * :white_square_button: lint and verify no security issues (bandit)
+    * :white_check_mark: lint and verify no security issues (bandit)
 
 ### Misc / Nice To Have  
 * captcha 
@@ -101,9 +101,11 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * logs to both console and logfile
 8. Unit Testing
     * unit testing implemented (need better checks)
-9. Dockerized
+9. Static Source Code Analyzer
+   * runs bandit as part of pipeline (one issue: all interfaces, leave in as demo)
+10. Dockerized
     * dockerfile receives secrets from environment
-10. CI/CD pipeline
+11. CI/CD pipeline
     * runs unit tests
     * dockerizes app
 
