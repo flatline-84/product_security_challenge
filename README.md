@@ -2,6 +2,8 @@
 
 ## Description
 The good ol' one-two combo of Python + Flask.
+
+[![ZenChair CI](https://github.com/flatline-84/product_security_challenge/actions/workflows/main.yml/badge.svg)](https://github.com/flatline-84/product_security_challenge/actions/workflows/main.yml)
 <hr>
 
 ## Setup
