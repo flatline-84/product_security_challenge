@@ -8,12 +8,12 @@ The good ol' one-two combo of Python + Flask.
 
 This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respectively.
 
-1. Ensure Python 3.6 is installed or higher with `python3 -V`
+1. Ensure Python 3.6 or higher is installed with `python3 -V`
 2. Create a virtualenv to keep your host system clean from pip packages - `python3 -m venv .venv`
 3. Activate the virtual env with `source .venv/bin/activate`
 4. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
 5. Run the program with `python3 main.py`
-6. Navigate to `http://localhost:8080/` in your browser.
+6. Navigate to `https://localhost:8080/` or what is shown in the console in your browser.
 
 ## Implementation
 
@@ -78,6 +78,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * CSRF tokens on all forms  
 5. SSL
     * SSL certificate added for encrypted comms (check versions?)
+6. IP Whitelisting
 
 
 <hr>
