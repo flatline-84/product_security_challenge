@@ -43,19 +43,20 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_square_button: CSP
     * :white_square_button: Pragma, Cache, etc
     * :white_check_mark: CSRF on login, logout, register, change password
-    * :white_square_button: bruteforce protection?
-    * :white_check_mark: account lockout
+    * :white_check_mark: bruteforce protection on login / IP lockout
 * :white_square_button: CI/CD pipeline to build Docker image
     * :white_square_button: or to lint and verify no security issues
 
 ### Nice To Have  
-* captcha / bruteforce protection
-* gunicorn
+* captcha 
+* :white_check_mark: bruteforce protection
+* :x: gunicorn
 * IP filtering / geoblocking
 * email reset?
+* :white_check_mark: SSL 
 
 ### Issues 
-* email enumeration when registering. Not sure the correct thing to do here
+* ~~email enumeration when registering. Not sure the correct thing to do here~~
 
 <hr>
 
@@ -64,6 +65,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 1. Accounts
     * Password SHA256 hashed + salted
     * OTP required for login and password change
+    * 3 failed logins blocks IP ADDRESS, not account 
 2. Cookies
     * HTTPOnly
     * Signed (but not encrypted)
@@ -73,7 +75,9 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * no session fixation 
 4. Input
     * all input is sanitized coming in and jinja templates encode on the way out
-    * CSRF tokens on all forms
+    * CSRF tokens on all forms  
+5. SSL
+    * SSL certificate added for encrypted comms (check versions?)
 
 
 <hr>

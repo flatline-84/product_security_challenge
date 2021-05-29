@@ -26,6 +26,7 @@ def login():
 
 @auth_blueprint.route('/register', methods=['POST', 'GET'])
 def register():
+    generic_register_error = "Error occured. Account could not be created!"
     form = RegistrationForm(request.form)
     # form.validate() returns true if all validation checks on data pass
     if request.method == 'POST' and form.validate():
@@ -49,13 +50,13 @@ def register():
                 flash("Your initial registration is complete!")
             except Exception as error:
                 db.session.rollback()
-                flash("Error occured. Account could not be created!")
+                flash(generic_register_error)
                 # flash("Error occured! " + error['orig'])
                 # print("Erroring!!!")
                 # print(error.__dict__)
         else:
-            # TODO: work out how not to perform email enumeration
-            flash("Email is already connected to an account!")
+            # DONE: work out how not to perform email enumeration
+            flash(generic_register_error)
         return redirect(url_for('auth_blueprint.register_2fa'))
 
     return render_template('auth/register.html', form=form)

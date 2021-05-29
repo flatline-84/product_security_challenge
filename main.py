@@ -51,4 +51,8 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     # Begin running the webapp
-    app.run(config.hostname, config.port, config.debug)
+    app.run(
+        config.hostname, 
+        config.port, 
+        config.debug, 
+        ssl_context='adhoc')
