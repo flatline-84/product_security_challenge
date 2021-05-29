@@ -13,6 +13,9 @@ class SecurityHardening():
 
         # If someone fails login three times, you go on the naughty list
         self.naughty_list = {}
+        self.naughty_counter = Config().naughty_counter
+
+        # Allowed list of subnets
         self.allowed_subnet = Config().allowed_subnet
 
     def __call__(self, environ, start_response):
@@ -34,7 +37,7 @@ class SecurityHardening():
                   self.naughty_list[request.remote_addr])
 
         if request.remote_addr in self.naughty_list:
-            if self.naughty_list[request.remote_addr] >= 3:
+            if self.naughty_list[request.remote_addr] > self.naughty_counter:
                 environ["PATH_INFO"] = '/'
                 environ["REQUEST_URI"] = '/'
                 environ["RAW_URI"] = '/'

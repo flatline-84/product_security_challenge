@@ -31,9 +31,8 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * :white_check_mark: login page
     * :white_check_mark: don't return email or password wrong message
     * :white_check_mark: session tokens (check session fixation)
-    * :x: will cookies be secure (generate SSL?)
+    * :white_check_mark: will cookies be secure (generate SSL?)
     * :white_check_mark: require 2FA
-    * :x: remember me
 * :white_check_mark: log out
     * :white_check_mark: invalidate session correctly
 * :white_check_mark: reset password
@@ -47,14 +46,14 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * :white_square_button: CI/CD pipeline to build Docker image
     * :white_square_button: or to lint and verify no security issues
 
-### Nice To Have  
+### Misc / Nice To Have  
 * captcha 
 * :white_check_mark: bruteforce protection
 * :x: gunicorn
 * :white_check_mark: IP filtering / geoblocking
 * email reset?
 * :white_check_mark: SSL 
-* logging
+* :white_square_button: logging
 
 ### Issues 
 * ~~email enumeration when registering. Not sure the correct thing to do here~~
@@ -82,6 +81,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 5. SSL
     * SSL certificate added for encrypted comms (check versions?)
 6. IP Whitelisting  
+    * allow specific subnets to access
 7. :x: Logging
 
 

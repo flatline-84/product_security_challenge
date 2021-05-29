@@ -11,3 +11,6 @@ class Config:
 
     # For IP filtering
     allowed_subnet = '0.0.0.0/0'
+
+    # Naughty counter (for login locking)
+    naughty_counter = 5
