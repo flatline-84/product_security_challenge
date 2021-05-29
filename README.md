@@ -6,14 +6,20 @@ The good ol' one-two combo of Python + Flask.
 
 ## Setup
 
+### Running with Docker  
+1. Build the image with `docker build --tag zenchair .`
+2. `docker run --name zenchair -p 5001:5001 zenchair`
+
+### Running Natively with Python  
 This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respectively.
 
 1. Ensure Python 3.6 or higher is installed with `python3 -V`
 2. Create a virtualenv to keep your host system clean from pip packages - `python3 -m venv .venv`
 3. Activate the virtual env with `source .venv/bin/activate`
-4. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
-5. Run the program with `python3 main.py`
-6. Navigate to `https://localhost:8080/` or what is shown in the console in your browser.
+4. `cd` into the `project` folder.
+5. Install all requirements and dependencies with `python3 -m pip install -r requirements.txt`
+6. Run the program with `python3 main.py`
+7. Navigate to `https://localhost:8080/` or what is shown in the console in your browser.
 
 ## Implementation
 

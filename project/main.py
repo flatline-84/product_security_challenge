@@ -28,7 +28,7 @@ csrf = CSRFProtect()
 logging.basicConfig(level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 logger = logging.getLogger('werkzeug') # grabs underlying WSGI logger
 handler = logging.FileHandler(config.log_file) # creates handler for the log file
-logger.addHandler(handler) # adds handler to the werkzeug WSGI logger so we get both console and file logging
+logger.addHandler(handler) # adds handler to the werkzeug WSGI logger so we get both console and file loggingapp.logger
 
 def create_app():
     # Create our main application here
