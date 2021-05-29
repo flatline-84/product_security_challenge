@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, flash, redirect, url_for, session
+from flask import current_app
 from databases.database import db
 from databases.user_model import User, get_valid_user
 
@@ -14,6 +15,7 @@ def login():
         if not user:
 
             flash("Email, password, or OTP is incorrect. Please try again")
+            current_app.logger.info('Failed login from %s on %s ' % (request.remote_addr, form.email.data))
 
             return redirect(url_for('auth_blueprint.login', naughty=True))
         else:
@@ -51,6 +53,7 @@ def register():
             except Exception as error:
                 db.session.rollback()
                 flash(generic_register_error)
+                current_app.logger.warn('DB error trying to register user')
                 # flash("Error occured! " + error['orig'])
                 # print("Erroring!!!")
                 # print(error.__dict__)
@@ -90,6 +93,8 @@ def change_password():
             except Exception as error:
                 db.session.rollback()
                 flash("Error occured. Password could not be changed!")
+                current_app.logger.warn('DB error trying to change password')
+
         else:
             flash("Details are wrong. No password changed.")
         return redirect(url_for('main_blueprint.index'))
@@ -112,9 +117,14 @@ def login_user(user, request):
     user.update_last_login()
     user.update_ip_address(request.remote_addr)
 
+    current_app.logger.info('User %s successfully logged in' % user.username)
+
 def logout_user():
     # Set our logged in session to false
     session['logged_in'] = False
+
+    current_app.logger.info('User %s logging out' % session['username'])
+
 
     # Remove all user specific session variables
     session.pop('username', None)

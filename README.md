@@ -53,7 +53,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * :white_check_mark: IP filtering / geoblocking
 * email reset?
 * :white_check_mark: SSL 
-* :white_square_button: logging
+* :white_check_mark: logging
 
 ### Issues 
 * ~~email enumeration when registering. Not sure the correct thing to do here~~
@@ -69,7 +69,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * 3 failed logins blocks IP ADDRESS, not account 
     * last login time and IP address logged in DB
 2. Cookies
-    * HTTPOnly
+    * HTTPOnly, Secure
     * Signed (but not encrypted)
 3. Sessions
     * proper invalidation - log out clears all session data
@@ -82,7 +82,9 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * SSL certificate added for encrypted comms (check versions?)
 6. IP Whitelisting  
     * allow specific subnets to access
-7. :x: Logging
+7. Logging
+    * logs on auth attempts and logout, db errors
+    * logs to both console and logfile
 
 
 

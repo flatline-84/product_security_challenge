@@ -9,6 +9,9 @@ class Config:
     salt = '29830970sdu0osidu'
     db_conn_string = 'sqlite:///zenchair.sqlite3'
 
+    # Log file
+    log_file = 'zenchair.log'
+
     # For IP filtering
     allowed_subnet = '0.0.0.0/0'
 

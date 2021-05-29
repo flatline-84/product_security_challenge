@@ -9,6 +9,7 @@
 from flask import Flask
 from flask import redirect, url_for, request, render_template, flash
 from flask_wtf.csrf import CSRFProtect
+import logging
 # For database and models
 from flask_sqlalchemy import SQLAlchemy
 from databases.database import db
@@ -18,8 +19,16 @@ from app.auth import auth_blueprint
 from app.routes import main_blueprint
 from app.security import SecurityHardening
 
+# Load our config
 config = Config()
+# Initialize CSRF protection
 csrf = CSRFProtect()
+
+# Set our logging up
+logging.basicConfig(level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logger = logging.getLogger('werkzeug') # grabs underlying WSGI logger
+handler = logging.FileHandler(config.log_file) # creates handler for the log file
+logger.addHandler(handler) # adds handler to the werkzeug WSGI logger so we get both console and file logging
 
 def create_app():
     # Create our main application here
