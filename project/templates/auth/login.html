@@ -6,17 +6,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
     {% from "auth/_formhelper.html" import render_field %}
     <form method="POST">
         <dl>
             {{ render_field(form.email) }}
             {{ render_field(form.password) }}
             {{ render_field(form.otp) }}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <p>
+                <input class="button" type="submit" value="Login"/>
+            </p>
         </dl>
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <p>
-            <input type="submit" value="Login"/>
-        </p>
+
     </form>
 {% endblock %}

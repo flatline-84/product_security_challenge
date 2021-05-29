@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Register</h1>
     {% from "auth/_formhelper.html" import render_field %}
     <form method="POST">
         <dl>
@@ -14,11 +13,11 @@
             {{ render_field(form.email) }}
             {{ render_field(form.password) }}
             {{ render_field(form.password_confirm) }}
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <p>
+                <input class="button" type="submit" value="Register"/>
+            </p>
         </dl>
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <p>
-            <input type="submit" value="Register"/>
-        </p>
     </form>
 
 {% endblock %}

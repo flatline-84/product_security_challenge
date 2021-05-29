@@ -1,7 +1,7 @@
 {% macro render_field(field) %}
-    <dl>
-        <dt>{{ field.label }}</dt>
-        <dd>{{ field(**kwargs)|safe }}
+    <dl class="field is-horizontal">
+        <dt class="field-label is-normal">{{ field.label }}</dt>
+        <dd class="field-body">{{ field(**kwargs)|safe }}
             {% if field.errors %}
                 <ul class="errors">
                     {% for error in field.errors %}

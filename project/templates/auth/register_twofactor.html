@@ -6,17 +6,13 @@
 {% endblock %}
 
 {% block content %}
-<h1>2FA</h1>
-<p>Your TOTP secret is: {{ session['2fa'] }}</p>
+    <p>Your TOTP secret is:
+        {{ session['2fa'] }}</p>
 
-<br>
-<canvas id="qr"></canvas>
-<script src="{{ url_for('static', filename='js/qrious.min.js')}}"></script>
-<script>
-    var qr = new QRious({
-        element: document.getElementById('qr'),
-        value: "{{ session['2fa'] }}",
-        size: 250
-    });
-</script>
+    <br/>
+    <canvas id="qr"></canvas>
+    <script src="{{ url_for('static', filename='js/qrious.min.js') }}"></script>
+    <script>
+        var qr = new QRious({element: document.getElementById('qr'), value: "{{ session['2fa'] }}", size: 250});
+    </script>
 {% endblock %}

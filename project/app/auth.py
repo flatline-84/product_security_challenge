@@ -102,6 +102,7 @@ def change_password():
     return render_template('auth/change_password.html', form=form)
 
 def login_user(user, request):
+    
     session['logged_in'] = True
     session['username'] = user.username
     session['last_login'] = user.last_login

@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>
-        {% block title %}{% endblock %}
-    </title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.min.css') }}">
+        <script src="{{ url_for('static', filename='js/navbar-toggle.js')}}"></script>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+    </head>
 
-<body>
-    <nav>
-        <h1>
-            ZenChair
-        </h1>
-        <ul>
-            <li>
-                <a href="{{ url_for('main_blueprint.index') }}">Home</a>
-            </li>
-            {% if session['logged_in'] == True: %}
-            <li>
-                <span>{{ session['username'] }}</span>
-            </li>
+    <body>
+        <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                <img src="{{ url_for('static', filename='images/chair.svg')}}" width="28" height="28">
+                <h1 class="navbar-item">
+                    zenchair
+                </h1>
+                </div>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
 
-            {% if session['2fa']: %}
-            <li>
-                <a href="{{ url_for('auth_blueprint.register_2fa') }}">Check 2FA</a>
-            </li>
-            {% endif %}
-            <li>
-                <a href="{{ url_for('auth_blueprint.change_password') }}">Change Password</a>
-            </li>
-            <li>
-                <form action="{{ url_for('auth_blueprint.logout') }}" method="POST">
-                    <button type="submit" name="logout">Logout</button>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                </form>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{{ url_for('main_blueprint.index') }}">Home</a>
+                </div>
+                <div class="navbar-end">
+                    {% if session['logged_in'] == True: %}
+                        <div class="navbar-item">
+                            <h1 class="is-dark">{{ session['username'] }}</h1>
+                        </div>
 
-            </li>
-            {% else %}
-            <li>
-                <a href="{{ url_for('auth_blueprint.register') }}">Register</a>
-            </li>
-            <li>
-                <a href="{{ url_for('auth_blueprint.login') }}">Log In</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-    <section class="content">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
-        {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% block content %}{% endblock %}
-    </section>
-</body>
+                        {% if session['2fa']: %}
+                        <a class="navbar-item" href="{{ url_for('auth_blueprint.register_2fa') }}">Check 2FA</a>
+                        {% endif %}
+                        <a class="navbar-item" href="{{ url_for('auth_blueprint.change_password') }}">Change Password</a>
 
+                        <div class="navbar-item">
+                            <form action="{{ url_for('auth_blueprint.logout') }}" method="POST">
+                                <button class="button" type="submit" name="logout">Logout</button>
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            </form>
+                        </div>
+                    {% else %}
+                    <div class="buttons">
+                        <a class="navbar-item button is-link" href="{{ url_for('auth_blueprint.register') }}">Register</a>
+                        <a class="navbar-item button is-warning" href="{{ url_for('auth_blueprint.login') }}">Log In</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <section class="section">
+            <div class="container">
+                <header class="title"> {% block header %}{% endblock %}
+                    </header>
+                    {% for message in get_flashed_messages() %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% block content %}{% endblock %}
+                </div>
+        </section>
+    </body>
 </html>
