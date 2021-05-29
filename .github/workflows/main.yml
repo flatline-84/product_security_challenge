@@ -39,8 +39,8 @@ jobs:
 
       # Run linter
       - name: Analyze with pylint
-      run: |
-        find . -name '*.py' -exec pylint {} \;
+        run: | 
+          find . -name '*.py' -exec pylint {} \;
 
       - name: Run unit tests
         run: |
