@@ -24,14 +24,20 @@ csrf = CSRFProtect()
 def create_app():
     # Create our main application here
     app = Flask(__name__)
+    
     # Get the database
     app.config['SQLALCHEMY_DATABASE_URI'] = config.db_conn_string 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.secret_key = config.secret_key
+
     # Create the database connection
     db.init_app(app)
+    
     # initialize CSRF protection from flask-wtf
     csrf.init_app(app)
+
+    # Make flask session cookies secure
+    app.config['SESSION_COOKIE_SECURE'] = True
 
     # Register routes via blueprints
     app.register_blueprint(main_blueprint)

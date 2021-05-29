@@ -26,8 +26,8 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_check_mark: 2FA
     * :white_check_mark: show 2FA here
     * :white_check_mark: email, password validations
-    * :white_square_button: password complexity
-    * :white_square_button: placeholder text with new forms
+    * :white_check_mark: password complexity
+    * :white_check_mark: placeholder text with new forms
 * :white_check_mark: login page
     * :white_check_mark: don't return email or password wrong message
     * :white_check_mark: session tokens (check session fixation)
@@ -51,9 +51,10 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * captcha 
 * :white_check_mark: bruteforce protection
 * :x: gunicorn
-* IP filtering / geoblocking
+* :white_check_mark: IP filtering / geoblocking
 * email reset?
 * :white_check_mark: SSL 
+* logging
 
 ### Issues 
 * ~~email enumeration when registering. Not sure the correct thing to do here~~
@@ -64,8 +65,10 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 
 1. Accounts
     * Password SHA256 hashed + salted
+    * Password complexity requirement (custom validator)
     * OTP required for login and password change
     * 3 failed logins blocks IP ADDRESS, not account 
+    * last login time and IP address logged in DB
 2. Cookies
     * HTTPOnly
     * Signed (but not encrypted)
@@ -78,7 +81,9 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * CSRF tokens on all forms  
 5. SSL
     * SSL certificate added for encrypted comms (check versions?)
-6. IP Whitelisting
+6. IP Whitelisting  
+7. :x: Logging
+
 
 
 <hr>
