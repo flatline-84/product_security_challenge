@@ -21,6 +21,10 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 6. Run the program with `python3 main.py`
 7. Navigate to `https://localhost:8080/` or what is shown in the console in your browser.
 
+### Running Unit Tests  
+1. `cd project`
+2. `python tests/test_basic.py` will run all tests by default
+
 ## Implementation
 
 ### Todo List
@@ -49,8 +53,9 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_square_button: Pragma, Cache, etc
     * :white_check_mark: CSRF on login, logout, register, change password
     * :white_check_mark: bruteforce protection on login / IP lockout
-* :white_square_button: CI/CD pipeline to build Docker image
-    * :white_square_button: or to lint and verify no security issues
+* :white_square_button: CI/CD pipeline
+    * :white_check_mark: docker image from dockerfile
+    * :white_square_button: lint and verify no security issues (bandit)
 
 ### Misc / Nice To Have  
 * captcha 
@@ -60,6 +65,7 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 * email reset?
 * :white_check_mark: SSL 
 * :white_check_mark: logging
+* :white_check_mark: unit tests
 
 ### Issues 
 * ~~email enumeration when registering. Not sure the correct thing to do here~~
@@ -91,7 +97,13 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 7. Logging
     * logs on auth attempts and logout, db errors
     * logs to both console and logfile
-
+8. Unit Testing
+    * unit testing implemented (need better checks)
+9. Dockerized
+    * dockerfile receives secrets from environment
+10. CI/CD pipeline
+    * runs unit tests
+    * dockerizes app
 
 
 <hr>
