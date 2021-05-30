@@ -1,0 +1,9 @@
+.git
+.cache
+__pycache__
+flask_session
+zenchair.sqlite3
+zenchair.log
+.vscode
+README.md
+docker-compose.yml

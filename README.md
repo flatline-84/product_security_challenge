@@ -77,10 +77,10 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 ## Main Features
 
 1. Accounts
-    * Password SHA256 hashed + salted
+    * Password ~~SHA256 hashed + salted~~ bcrypt and salted
     * Password complexity requirement (custom validator)
     * OTP required for login and password change
-    * 3 failed logins blocks IP ADDRESS, not account 
+    * 5 failed logins blocks IP ADDRESS, not account 
     * last login time and IP address logged in DB
 2. Cookies
     * HTTPOnly, Secure

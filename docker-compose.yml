@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+    zenchair:
+        # Builds the local Dockerfile image
+        # Should probably push this somewhere
+        build: ./
+        ports:
+            - "5001:5001" #host : container
+        restart: unless-stopped
+        environment:
+            - SECRET_KEY="your_secret_key_here_please"
+            - TZ=Australia/Melbourne
+        entrypoint: "python3 main.py"
