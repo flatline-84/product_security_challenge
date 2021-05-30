@@ -63,8 +63,24 @@ def create_app():
     return app
 
 
+
 if __name__ == "__main__":
     app = create_app()
+
+    # Security hardening
+    @app.after_request
+    def add_header(response):
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['X-XSS-Protection'] = '1; mode=block'
+        response.headers['X-Frame-Options'] = 'DENY'
+        response.headers['Referrer-Policy'] = 'same-origin'
+        response.headers['Content-Security-Policy'] = "script-src 'strict-dynamic' 'nonce-rAnd0m123' 'unsafe-inline' http: https:; object-src 'none'; base-uri 'none'; require-trusted-types-for 'script';"
+        response.headers['Server'] = ''
+
+        # No HSTS because certs are generated on the fly
+
+        return response
+
     # Begin running the webapp
     app.run(
         config.hostname, 

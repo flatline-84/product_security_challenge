@@ -61,8 +61,11 @@ class User(db.Model):
 def get_valid_user(email, password, otp):
     user = User.query.filter_by(email=email).first()
     if not user:
+        # Do a bcrypt anyway to prevent username enumeration
+        bcrypt.hashpw("hash_this_is_a_defence_mechanism_yolo_against_time_based_user_enum".encode(), bcrypt.gensalt())
         return None
     if user.verify_password(password) and user.verify_totp(otp):
         return user
     else:
+        bcrypt.hashpw("hash_this_is_a_defence_mechanism_yolo_against_time_based_user_enum".encode(), bcrypt.gensalt())
         return None
