@@ -4,7 +4,7 @@ class Config:
     # hostname = 'localhost'
     # Need to bind to all addresses as WSL doesn't like localhost >:(
     # Just WSL sucks. Why bind to the wrong interface WSL, why
-    hostname = '0.0.0.0'
+    hostname = os.getenv('HOST') or 'localhost'
     port = os.getenv('PORT') or '8080'
     debug = os.getenv('DEBUG') or True
     secret_key = os.getenv('SECRET_KEY') or 'sdiu0qioje2019j1pmdn*&%&%&^%@987098@)(80'
