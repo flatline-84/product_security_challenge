@@ -101,6 +101,10 @@ def change_password():
 
     return render_template('auth/change_password.html', form=form)
 
+@auth_blueprint.route('/blocked', methods=['GET'])
+def blocked():
+    return render_template('auth/blocked.html')
+
 def login_user(user, request):
     
     session['logged_in'] = True

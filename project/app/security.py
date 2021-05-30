@@ -38,15 +38,15 @@ class SecurityHardening():
 
         if request.remote_addr in self.naughty_list:
             if self.naughty_list[request.remote_addr] > self.naughty_counter:
-                environ["PATH_INFO"] = '/'
-                environ["REQUEST_URI"] = '/'
-                environ["RAW_URI"] = '/'
+                environ["PATH_INFO"] = '/blocked'
+                # environ["REQUEST_URI"] = '/blocked'
+                # environ["RAW_URI"] = '/'
 
         # If the IP address shouldn't be allowed in
         if ipaddress.ip_address(request.remote_addr) not in ipaddress.ip_network(self.allowed_subnet):
-            environ["PATH_INFO"] = '/'
-            environ["REQUEST_URI"] = '/'
-            environ["RAW_URI"] = '/'
+            environ["PATH_INFO"] = '/blocked'
+            # environ["REQUEST_URI"] = '/blocked'
+            # environ["RAW_URI"] = '/'
 
         data = self.app(environ, start_response)
 
