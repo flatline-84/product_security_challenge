@@ -8,7 +8,8 @@ class Config:
     port = os.getenv('PORT') or '8080'
     debug = os.getenv('DEBUG') or True
     secret_key = os.getenv('SECRET_KEY') or 'sdiu0qioje2019j1pmdn*&%&%&^%@987098@)(80'
-    salt = os.getenv('SALT') or '29830970sdu0osidu'
+    # BCrypt automatically does this for us now
+    # salt = os.getenv('SALT') or '29830970sdu0osidu'
     db_conn_string = 'sqlite:///zenchair.sqlite3'
 
     # Log file

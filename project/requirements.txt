@@ -1,8 +1,10 @@
 astroid==2.5.6
 autopep8==1.5.7
+bcrypt==3.2.0
 cffi==1.14.5
 click==8.0.1
 cryptography==3.4.7
+dataclasses==0.8
 dnspython==2.1.0
 email-validator==1.1.2
 Flask==2.0.1
@@ -17,6 +19,7 @@ Jinja2==3.0.1
 lazy-object-proxy==1.6.0
 MarkupSafe==2.0.1
 mccabe==0.6.1
+pkg-resources==0.0.0
 pycodestyle==2.7.0
 pycparser==2.20
 pylint==2.8.2
@@ -24,6 +27,7 @@ pylint-flask==0.6
 pylint-flask-sqlalchemy==0.2.0
 pylint-plugin-utils==0.6
 pyotp==2.6.0
+six==1.16.0
 SQLAlchemy==1.4.15
 toml==0.10.2
 typed-ast==1.4.3

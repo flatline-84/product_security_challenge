@@ -3,6 +3,7 @@ from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import pyotp
+import bcrypt
 
 config = Config()
 
@@ -12,7 +13,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False, index=True)
-    password = db.Column(db.String(240), nullable=False)
+    password = db.Column(db.String(256), nullable=False)
     date_created = db.Column(db.DateTime)
     last_login = db.Column(db.DateTime)
     last_ip_login = db.Column(db.String(30))
@@ -35,10 +36,12 @@ class User(db.Model):
         db.session.commit()
 
     def gen_hashed_password(self, password):
-        return generate_password_hash(password + config.salt)
+        return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        # return generate_password_hash(password + config.salt)
 
-    def verify_password(self, password):
-        return check_password_hash(self.password, password+config.salt)
+    def verify_password(self, to_check_password):
+        return bcrypt.checkpw(to_check_password.encode(), self.password)
+        # return check_password_hash(self.password, password+config.salt)
 
     def verify_totp(self, otp):
         return pyotp.TOTP(self.totp_secret).verify(otp)
