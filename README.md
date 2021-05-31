@@ -8,6 +8,11 @@ The good ol' one-two combo of Python + Flask.
 
 ## Setup
 
+### Running with Docker-Compose
+1. Ensure docker-compose and docker are installed on your system.
+2. `docker-compose up -d` from the root folder of this project (i.e where docker-compose.yml is)
+3. Profit
+
 ### Running with Docker  
 1. Build the image with `docker build --tag zenchair .`
 2. `docker run --name zenchair -p 5001:5001 zenchair`
@@ -51,8 +56,8 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
     * :white_check_mark: require email, old password, and OTP
 * :white_square_button: app hardening
     * :x: CORS
-    * :white_square_button: CSP
-    * :white_square_button: Pragma, Cache, etc
+    * :white_check_mark: CSP
+    * :white_check_mark: XSS, mimetype, etc headers
     * :white_check_mark: CSRF on login, logout, register, change password
     * :white_check_mark: bruteforce protection on login / IP lockout
 * :white_check_mark: CI/CD pipeline
@@ -99,13 +104,20 @@ This was tested using Python 3.6.9 and Python 3.8.5 on WSL and Linux, respective
 7. Logging
     * logs on auth attempts and logout, db errors
     * logs to both console and logfile
-8. Unit Testing
-    * unit testing implemented (need better checks)
-9. Static Source Code Analyzer
+8. Security Headers
+   * X-Content-Type-Options
+   * X-XSS-Protection
+   * X-Frame-Options
+   * Referrer-Policy
+   * Content-Security-Policy
+   * Server
+9. Unit Testing
+   * unit testing implemented (need better checks)
+10. Static Source Code Analyzer
    * runs bandit as part of pipeline (one issue: all interfaces, leave in as demo)
-10. Dockerized
+11. Dockerized
     * dockerfile receives secrets from environment
-11. CI/CD pipeline
+12. CI/CD pipeline
     * runs unit tests
     * dockerizes app
 
